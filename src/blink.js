@@ -39,12 +39,12 @@ angular.module('mhBlink', ['ajoslin.promise-tracker'])
     return {
       restrict: 'A',
       compile: function($element, attr) {
-        var deferred = $q.defer();
-        var tracker = new PromiseTracker();
-        var trackAttrName = attr[name];
+        var deferred       = $q.defer();
+        var tracker        = new PromiseTracker();
+        var trackAttrName  = attr[name];
         var trackAttrValue = attr[ trackAttrName ];
-        var getOptions = $parse( attr.blinkOptions );
-        var isFunction = ['uiSref', 'href', 'ngHref'].indexOf(trackAttrName) === -1;
+        var getOptions     = $parse( attr.blinkOptions );
+        var isFunction     = ['uiSref', 'href', 'ngHref'].indexOf(trackAttrName) === -1;
         var wrappedFn;
 
         // If we are not dealing with a url changing event
@@ -79,6 +79,7 @@ angular.module('mhBlink', ['ajoslin.promise-tracker'])
             template = $compile(options.template)(scope);
           }
 
+          tracker = new PromiseTracker(options);
 
           if (isFunction) {
             // Add wrapped function to scope
