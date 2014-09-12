@@ -39,6 +39,20 @@ describe('blink provider', function() {
     expect(link.html()).toContain('Just ran!');
   });
 
+  it('should add classes to the surrounding div', function() {
+    var link;
+    scope.runFor = function(secs){
+      return timeout(angular.noop, parseInt(secs, 10) * 1000);
+    };
+
+    link = compile('<a ng-click="runFor(3)" blink-on="ngClick" blink-options="{classes: \'right\'}">{{msg}}</a>')(scope);
+    link.triggerHandler('click');
+    digest();
+    expect(link.find('div').length).toEqual(1);
+    expect(link.find('div').hasClass('indicators')).toBe(true);
+    expect(link.find('div').hasClass('right')).toBe(true);
+  });
+
   it('should add element when loading', function() {
     var link;
     scope.runFor = function(secs){
