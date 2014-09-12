@@ -1,5 +1,5 @@
 /*
- * angular-blink - v0.0.1 - 2014-09-12
+ * angular-blink - v0.1-alpha - 2014-09-12
  * http://github.com/mhssmnn/angular-blink
  * Created by Mark Haussmann; Licensed under Public Domain
  */
