@@ -2,7 +2,7 @@
   "author": "Mark Haussmann",
   "name": "angular-blink",
   "description": "Add loading animations to your angular app.",
-  "version": "0.0.1",
+  "version": "0.1-alpha",
   "homepage": "http://github.com/mhssmnn/angular-blink",
   "repository": {
     "type": "git",
