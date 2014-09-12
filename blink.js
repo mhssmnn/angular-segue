@@ -20,8 +20,9 @@ angular.module('mhBlink', ['ajoslin.promise-tracker'])
     var name = 'blinkOn';
 
     var defaults = {
-      template:         '<div><b></b><b></b><b></b><b></b></div>',
+      template:         '<div class="indicators" ng-class="classes"><b></b><b></b><b></b><b></b></div>',
       templateUrl:      '',
+      classes:          '',
       blinkingClass:    'blinking',
       successClass:     'blink-success icon-filled-check-circle-2',
       failureClass:     'blink-fail icon-filled-cross-circle-2',
@@ -80,11 +81,11 @@ angular.module('mhBlink', ['ajoslin.promise-tracker'])
           var options = angular.extend(angular.copy(defaults), getOptions(scope));
           var template;
 
-          if (options.templateUrl) {
-            loadTemplate(options.templateUrl);
-          } else {
-            template = $compile(options.template)(scope);
-          }
+          $q.when( loadTemplate(options.templateUrl) ).then(function(t) {
+            var templateScope = scope.$new();
+            templateScope.classes = options.classes;
+            template = $compile(t)(templateScope);
+          });
 
           tracker = new PromiseTracker(options);
 
@@ -151,10 +152,11 @@ angular.module('mhBlink', ['ajoslin.promise-tracker'])
           }
           function loadTemplate(templateUrl) {
             // Load template
-            $http.get( templateUrl, {cache: $templateCache} ).success(function(html){
-              options.template = html;
-              template = $compile(options.template)(scope);
-            });
+            if (!templateUrl) {
+              return options.template;
+            }
+
+            return $http.get( templateUrl, {cache: $templateCache} );
           }
           // jshint +W003
         };

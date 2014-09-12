@@ -2,6 +2,15 @@
 ### 0.1-alpha (2014-09-12)
 
 
+#### Features
+
+* allow classes on template ([562b3d2b](http://github.com/mhssmnn/angular-blink/commit/562b3d2ba9c998bd67b48a4e38a50f582e5bed83))
+
+
+<a name="0.1-alpha"></a>
+### 0.1-alpha (2014-09-12)
+
+
 <a name="0.0.1"></a>
 ### 0.0.1 (2014-09-12)
 
