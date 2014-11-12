@@ -1,7 +1,7 @@
 angular-segue
 =============
 
-> **Version**: 0.3-alpha
+> **Version**: 0.3
 
 Small, simple directives to add promise/request tracking to an element in your angular app.
 
