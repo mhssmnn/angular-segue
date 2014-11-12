@@ -60,9 +60,10 @@ describe('Segue provider', function() {
     link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise">{{msg}}</a>')(scope);
     link.triggerHandler('click');
     digest();
-    expect(link.find('b').length).toEqual(4);
+    expect(link.find('div').length).toEqual(1);
+    expect(link.find('div').hasClass('indicator')).toBe(true);
     timeout.flush();
-    expect(link.find('b').length).toEqual(0);
+    expect(link.find('div').length).toEqual(0);
   });
 
   it('should update classes throughout lifecycle', function() {
