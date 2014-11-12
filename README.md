@@ -1,65 +1,65 @@
 angular-segue
 =============
 
-> **Version**: 0.0.2
+> **Version**: 0.3-alpha
 
-Small, feature filled library used to easily add spinners or general promise/request tracking to your angular app.
+Small, simple directives to add promise/request tracking to an element in your angular app.
 
 * [Quick Start](#quick-start)
 * [API Documentation](#api-documentation)
-* [Changes](https://github.com/ajoslin/angular-promise-tracker/tree/master/CHANGELOG.md)
+* [Changes](https://github.com/mhssmnn/angular-blink/tree/master/CHANGELOG.md)
 * [License](#license)
 
 ## Quick Start
 
-The basic idea: each time we add one or more promises to an instance of a `promiseTracker`, that instance's `active()` method will return true until all added promises are resolved. A common use case is showing some sort of loading spinner while some http requests are loading.
-
-[Play with this example on plunkr](http://plnkr.co/edit/PrO2ou9b1uANbeGoX6eB?p=preview)
-
 ```sh
 $ bower install angular-segue
 ```
+
+The basic idea: support loading indicators (segue's) on individual elements (i.e. an `<a class="btn">`). This allows you to support things like showing spinners on the buttons used to submit forms.
+
+We do this by adding one of the supplied directives to the element:
+
+* `segue-promise` - segue when it receives a promise
+* `segue-state` - segue when it matches the state
+* `segue-route` - segue when it matches the route
+
+Segue has 4 states which it displays through a `class` on the element: `segue-idle`, `segue-indicating`, `segue-success`, `segue-fail`.
+
+When indicating a new element is created from `options.template` which is appended to the directive's element. The default element is `<div class="indicator"></div>`
+
+### Segue Promise
+
+Segue promise works well when using `ng-click`. Change the function in `ng-click` to return a promise, then segue shows when promise is being resolved:
+
 ```html
-<body ng-app="myApp" ng-controller="MainCtrl">
-  <div class="my-super-awesome-loading-box" ng-show="loadingTracker.active()">
-    Loading...
-  </div>
-  <button ng-click="delaySomething()">Delay Something</button>
-  <button ng-click="fetchSomething()">Fetch Something</button>
-
-  <script src="angular.js"></script>
-  <script src="promise-tracker.js"></script>
-
-  <!-- optional for $http sugar -->
-  <script src="promise-tracker-http-interceptor.js"></script>
-</body>
+<button ng-click="p = doSomething()" segue-promise="p">Submit</button>
 ```
 ```js
-angular.module('myApp', ['ajoslin.promise-tracker'])
-.controller('MainCtrl', function($scope, $http, $timeout, promiseTracker) {
-  //Create a new tracker
-  $scope.loadingTracker = promiseTracker();
-
-  //use `addPromise` to add any old promise to our tracker
-  $scope.delaySomething = function() {
-    var promise = $timeout(function() {
-      alert('Delayed something!');
-    }, 1000);
-    $scope.loadingTracker.addPromise(promise);
-  };
-
-  //use `tracker:` shortcut in $http config to link our http promise to a tracker
-  //This shortcut is included in promise-tracker-http-interceptor.js
-  $scope.fetchSomething = function(id) {
-    return $http.get('/something', {
-      tracker: $scope.loadingTracker
-    }).then(function(response) {
-      alert('Fetched something! ' + response.data);
-    });
-  };
+angular.module('myApp', ['mhSegue'])
+.controller('MainCtrl', function($scope, $timeout) {
+  $scope.doSomething = function() {
+    // Timeout returns a promise
+    return $timeout(angular.noop, 1000);
+  }
 });
 ```
 
+### Segue State
+
+Segue state works with [ui-router](https://github.com/angular-ui/ui-router) and can detect when transitioning to the state referenced on the element.
+
+```html
+<a ui-sref="foo.bar" segue-state></a>
+```
+
+### Segue Route
+
+Similar to segue state, but works with angular-router.
+
+```html
+<a ng-href="/foo/bar" segue-route></a>
+```
 
 
 ## Development

@@ -11,7 +11,7 @@ angular.module('mhSegue', [])
 
 .provider('$segue', function(){
   var defaultOptions = {
-    template:         '<div class="indicator"><b></b><b></b><b></b><b></b></div>',
+    template:         '<div class="indicator"></div>',
     templateUrl:      '',
     defaultClass:     'segue-idle',
     indicatingClass:  'segue-indicating',
