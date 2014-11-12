@@ -1,0 +1,73 @@
+<!doctype html>
+<html ng-app="Segue">
+<head>
+  <meta charset="utf-8">
+  <title>segue Test</title>
+
+  <link rel="stylesheet" href="../src/segue.css">
+  <style>
+    .indicator b:before {
+      content: ".";
+    }
+  </style>
+</head>
+<body ng-controller="AppController">
+  <!-- Application content -->
+
+  <button ng-click="promise = doSomething()" segue-promise="promise">
+    Click me
+  </button>
+
+  <button segue-state ui-sref="state2">
+    Click me
+  </button>
+
+  <a segue-route ng-href="#/route2">
+    Click me
+  </a>
+
+  <button ng-click="promise2 = doSomething()" segue-promise="promise2" on-segue-hide>
+    Click me
+  </button>
+
+  <div ng-view></div>
+
+
+  <script src="../bower_components/angular/angular.js"></script>
+  <script src="../bower_components/angular-route/angular-route.js"></script>
+  <script src="../bower_components/ui-router/release/angular-ui-router.js"></script>
+  <script src="../src/segue.js"></script>
+  <script>
+  var app = angular.module('Segue', ['mhSegue', 'ui.router', 'ngRoute']);
+
+  app.config(function($stateProvider, $routeProvider){
+    $stateProvider.state('state2', {
+      url: '/state2',
+      resolve: {
+        timeout: function($timeout){ return $timeout(angular.noop, 500); }
+      }
+    });
+
+    $routeProvider.when('/route2', {
+      template: '<div></div>',
+      controller: 'Route2Controller',
+      resolve: {
+        timeout: function($timeout) { return $timeout(angular.noop, 500); }
+      }
+    });
+  });
+
+  app.controller('AppController', function($scope, $timeout) {
+    $scope.doSomething = function(){
+      return $timeout(angular.noop, 500);
+    };
+
+  });
+
+  app.controller('Route2Controller', function($scope){
+
+  });
+
+  </script>
+</body>
+</html>

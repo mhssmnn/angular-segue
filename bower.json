@@ -1,15 +1,15 @@
 {
   "author": "Mark Haussmann",
-  "name": "angular-blink",
+  "name": "angular-segue",
   "description": "Add loading animations to your angular app.",
-  "version": "0.1-alpha",
-  "homepage": "http://github.com/mhssmnn/angular-blink",
+  "version": "0.2-alpha",
+  "homepage": "http://github.com/mhssmnn/angular-segue",
   "repository": {
     "type": "git",
-    "url": "git://github.com/mhssmnn/angular-blink"
+    "url": "git://github.com/mhssmnn/angular-segue"
   },
   "license": "Public Domain",
-  "main": "./blink.js",
+  "main": "./segue.js",
   "ignore": [
     "CHANGELOG.md",
     "Gruntfile.js",
@@ -22,14 +22,14 @@
     "test"
   ],
   "files": [
-    "blink.js"
+    "segue.js",
+    "segue.css"
   ],
-  "dependencies": {
-    "angular-promise-tracker": "~2.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "angular": "1.2.6",
     "angular-mocks": "1.2.6",
-    "angular-route": "1.2.6"
+    "angular-route": "1.2.6",
+    "ui-router": "~0.2.11"
   }
 }

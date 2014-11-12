@@ -45,7 +45,12 @@ module.exports = function (grunt) {
           footer: '<%= meta.footer %>'
         },
         files: {
-          '<%= dist %>/blink.js': ['src/blink.js']
+          '<%= dist %>/segue.js': ['src/segue.js']
+        }
+      },
+      css: {
+        files: {
+          '<%= dist %>/segue.css': ['src/segue.css']
         }
       }
     },
@@ -87,5 +92,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('default', ['jshint', 'test', 'build']);
   grunt.registerTask('test', ['karma:single']);
-  grunt.registerTask('build', ['concat']);
+  grunt.registerTask('build', ['concat:dist', 'concat:css']);
 };

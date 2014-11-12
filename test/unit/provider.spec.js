@@ -1,6 +1,5 @@
-describe('blink provider', function() {
-  beforeEach(module('ajoslin.promise-tracker'));
-  beforeEach(module('mhBlink'));
+describe('Segue provider', function() {
+  beforeEach(module('mhSegue'));
 
   var timeout, q, scope, compile;
   beforeEach(inject(function($timeout, $q, $rootScope, $compile) {
@@ -30,7 +29,7 @@ describe('blink provider', function() {
       return timer;
     };
 
-    link = compile('<a ng-click="runFor(3)" blink-on="ngClick">{{msg}}</a>')(scope);
+    link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise">{{msg}}</a>')(scope);
     digest();
     link.triggerHandler('click');
     digest();
@@ -45,12 +44,11 @@ describe('blink provider', function() {
       return timeout(angular.noop, parseInt(secs, 10) * 1000);
     };
 
-    link = compile('<a ng-click="runFor(3)" blink-on="ngClick" blink-options="{classes: \'right\'}">{{msg}}</a>')(scope);
+    link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise">{{msg}}</a>')(scope);
     link.triggerHandler('click');
     digest();
     expect(link.find('div').length).toEqual(1);
-    expect(link.find('div').hasClass('indicators')).toBe(true);
-    expect(link.find('div').hasClass('right')).toBe(true);
+    expect(link.find('div').hasClass('indicator')).toBe(true);
   });
 
   it('should add element when loading', function() {
@@ -59,12 +57,61 @@ describe('blink provider', function() {
       return timeout(angular.noop, parseInt(secs, 10) * 1000);
     };
 
-    link = compile('<a ng-click="runFor(3)" blink-on="ngClick">{{msg}}</a>')(scope);
+    link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise">{{msg}}</a>')(scope);
     link.triggerHandler('click');
     digest();
     expect(link.find('b').length).toEqual(4);
     timeout.flush();
     expect(link.find('b').length).toEqual(0);
+  });
+
+  it('should update classes throughout lifecycle', function() {
+    var link;
+    scope.runFor = function(secs){
+      return timeout(angular.noop, parseInt(secs, 10) * 1000);
+    };
+
+    link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise">{{msg}}</a>')(scope);
+    expect(link.hasClass('segue-idle')).toBe(true);
+    link.triggerHandler('click');
+    digest();
+    expect(link.hasClass('segue-indicating')).toBe(true);
+    timeout.flush();
+    expect(link.hasClass('segue-success')).toBe(true);
+    timeout.flush();
+    expect(link.hasClass('segue-idle')).toBe(true);
+  });
+
+  it('should add failure classes', function() {
+    var link;
+    scope.runFor = function(secs){
+      var deferred = q.defer();
+      timeout(deferred.reject, parseInt(secs, 10) * 1000);
+      return deferred.promise;
+    };
+
+    link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise">{{msg}}</a>')(scope);
+    expect(link.hasClass('segue-idle')).toBe(true);
+    link.triggerHandler('click');
+    digest();
+    expect(link.hasClass('segue-indicating')).toBe(true);
+    timeout.flush();
+    expect(link.hasClass('segue-fail')).toBe(true);
+  });
+
+  it('should add custom classes', function() {
+    var link;
+    scope.runFor = function(secs){
+      var deferred = q.defer();
+      timeout(deferred.reject, parseInt(secs, 10) * 1000);
+      return deferred.promise;
+    };
+
+    link = compile('<a ng-click="promise = runFor(3)" segue-promise="promise" segue-options="{indicatorClass: \'right\'}">{{msg}}</a>')(scope);
+    expect(link.hasClass('segue-idle')).toBe(true);
+    link.triggerHandler('click');
+    digest();
+    expect(link.find('div').hasClass('right')).toBe(true);
   });
 
 });

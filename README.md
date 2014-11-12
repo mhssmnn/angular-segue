@@ -1,9 +1,7 @@
-angular-blink
+angular-segue
 =============
 
-> **Version**: 0.0.1
-
-[![Build Status](https://travis-ci.org/ajoslin/angular-promise-tracker.png)](https://travis-ci.org/ajoslin/angular-promise-tracker)
+> **Version**: 0.0.2
 
 Small, feature filled library used to easily add spinners or general promise/request tracking to your angular app.
 
@@ -19,7 +17,7 @@ The basic idea: each time we add one or more promises to an instance of a `promi
 [Play with this example on plunkr](http://plnkr.co/edit/PrO2ou9b1uANbeGoX6eB?p=preview)
 
 ```sh
-$ bower install angular-blink
+$ bower install angular-segue
 ```
 ```html
 <body ng-app="myApp" ng-controller="MainCtrl">
@@ -73,4 +71,4 @@ angular.module('myApp', ['ajoslin.promise-tracker'])
 
 ## <a id="license"></a>License
 
-> <a rel="license" href="http://creativecommons.org/publicdomain/mark/1.0/"> <img src="http://i.creativecommons.org/p/mark/1.0/80x15.png" style="border-style: none;" alt="Public Domain Mark" /> </a> <span property="dct:title">angular-blink</span> by <a href="https://github.com/mhssmnn" rel="dct:creator"><span property="dct:title">Mark Haussmann</span></a> is free of known copyright restrictions.
+> <a rel="license" href="http://creativecommons.org/publicdomain/mark/1.0/"> <img src="http://i.creativecommons.org/p/mark/1.0/80x15.png" style="border-style: none;" alt="Public Domain Mark" /> </a> <span property="dct:title">angular-segue</span> by <a href="https://github.com/mhssmnn" rel="dct:creator"><span property="dct:title">Mark Haussmann</span></a> is free of known copyright restrictions.

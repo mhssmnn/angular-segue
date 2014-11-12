@@ -1,14 +1,14 @@
 {
-  "name": "angular-blink",
+  "name": "angular-segue",
   "version": "0.1-alpha",
-  "main": "blink.js",
+  "main": "segue.js",
   "author": {
     "name": "Mark Haussmann"
   },
   "repository": {
-    "url": "git://github.com/mhssmnn/angular-blink.git"
+    "url": "git://github.com/mhssmnn/angular-segue.git"
   },
-  "homepage": "https://github.com/mhssmnn/angular-blink",
+  "homepage": "https://github.com/mhssmnn/angular-segue",
   "devDependencies": {
     "load-grunt-tasks": "~0.2.1",
     "grunt-contrib-concat": "~0.3.0",
