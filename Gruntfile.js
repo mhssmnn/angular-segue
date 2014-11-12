@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         ' * <%= pkg.homepage %>\n' +
         ' * Created by <%= pkg.author %>; Licensed under <%= pkg.license %>\n' +
         ' */\n' +
-        '\n(function() {\n',
+        '\n(function() {\n\'use strict\';\n',
       footer: '\n}());'
     },
 

@@ -1,12 +1,3 @@
-/*
- * angular-segue - v0.1-alpha - 2014-09-12
- * http://github.com/mhssmnn/angular-segue
- * Created by Mark Haussmann; Licensed under Public Domain
- */
-
-(function() {
-'use strict';
-
 angular.module('mhSegue', [])
 
 .provider('$segue', function(){
@@ -235,5 +226,3 @@ angular.module('mhSegue', [])
     transclude: true
   };
 });
-
-}());

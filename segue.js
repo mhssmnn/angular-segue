@@ -1,19 +1,11 @@
 /*
- * angular-segue - v0.2-alpha - 2014-11-13
- * http://github.com/mhssmnn/angular-segue
- * Created by Mark Haussmann; Licensed under Public Domain
- */
-
-(function() {
-/*
- * angular-segue - v0.1-alpha - 2014-09-12
+ * angular-segue - v0.3-alpha - 2014-11-13
  * http://github.com/mhssmnn/angular-segue
  * Created by Mark Haussmann; Licensed under Public Domain
  */
 
 (function() {
 'use strict';
-
 angular.module('mhSegue', [])
 
 .provider('$segue', function(){
@@ -242,7 +234,5 @@ angular.module('mhSegue', [])
     transclude: true
   };
 });
-
-}());
 
 }());
