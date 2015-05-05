@@ -1,0 +1,15 @@
+.segue-idle {
+  background-color: blue;
+}
+.segue-indicating {
+  background-color: yellow;
+}
+.segue-success {
+  background-color: green;
+}
+.segue-failure {
+  background-color: red;
+}
+.segue-indicating .segue-hidden {
+  visibility: hidden;
+}
