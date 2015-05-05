@@ -20,10 +20,6 @@
     "src",
     "test"
   ],
-  "files": [
-    "./dist/segue.js",
-    "./dist/segue.css"
-  ],
   "dependencies": {},
   "devDependencies": {
     "angular": "1.2.6",
