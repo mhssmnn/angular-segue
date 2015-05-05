@@ -89,7 +89,7 @@ angular.module('mhSegue', [])
 
 })
 
-.directive('seguePromise', function($segue){
+.directive('seguePromise', ['$segue', function($segue){
   return {
     restrict: 'A',
     link: function(scope, elem, attr){
@@ -107,9 +107,9 @@ angular.module('mhSegue', [])
       });
     }
   };
-})
+}])
 
-.directive('segueState', function($segue, $injector){
+.directive('segueState', ['$segue', '$injector', function($segue, $injector){
   var $state;
 
   // Copied from ui-router
@@ -174,9 +174,9 @@ angular.module('mhSegue', [])
       });
     }
   };
-})
+}])
 
-.directive('segueRoute', function($segue, $injector, $location){
+.directive('segueRoute', ['$segue', '$injector', '$location', function($segue, $injector, $location){
   var $route;
 
   return {
@@ -215,7 +215,7 @@ angular.module('mhSegue', [])
       });
     }
   };
-})
+}])
 
 // Helper Directive
 // - wraps the element below with a .segue-hidden class

@@ -9,21 +9,20 @@
     "url": "git://github.com/mhssmnn/angular-segue"
   },
   "license": "Public Domain",
-  "main": "./segue.js",
+  "main": "./dist/segue.js",
   "ignore": [
     "CHANGELOG.md",
     "Gruntfile.js",
     "bower.json",
     "bower_components",
-    "dist",
     "node_modules",
     "package.json",
     "src",
     "test"
   ],
   "files": [
-    "segue.js",
-    "segue.css"
+    "./dist/segue.js",
+    "./dist/segue.css"
   ],
   "dependencies": {},
   "devDependencies": {
