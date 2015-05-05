@@ -1,3 +1,12 @@
+<a name="0.0.2"></a>
+### 0.0.2 (2015-05-06)
+
+
+#### Bug Fixes
+
+* **DI:** add DI annotation ([d6efdc62](http://github.com/mhssmnn/angular-segue/commit/d6efdc629881ddd819c66ad1cceabc9756b8b375))
+
+
 <a name="0.0.1"></a>
 ### 0.0.1 (2014-11-13)
 

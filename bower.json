@@ -2,7 +2,7 @@
   "author": "Mark Haussmann",
   "name": "angular-segue",
   "description": "Add loading animations to your angular app.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "homepage": "http://github.com/mhssmnn/angular-segue",
   "repository": {
     "type": "git",
