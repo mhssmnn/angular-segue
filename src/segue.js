@@ -59,10 +59,10 @@ angular.module('mhSegue', [])
 
       return {
         promise: function(method) {
-          return $q.all(
+          return $q.all([
             $q.when(method),
             $timeout(angular.noop, opts.minDuration)
-          );
+          ]);
         },
 
         setIdle: function(elem) {
