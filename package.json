@@ -1,6 +1,6 @@
 {
   "name": "angular-segue",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "segue.js",
   "author": {
     "name": "Mark Haussmann"

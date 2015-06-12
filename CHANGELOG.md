@@ -1,3 +1,12 @@
+<a name="0.0.5"></a>
+### 0.0.5 (2015-06-12)
+
+
+#### Features
+
+* **Duration:** allow min duration to be set ([fc3341c1](http://github.com/mhssmnn/angular-segue/commit/fc3341c1590096a387578fd195bfc0d24031a130))
+
+
 <a name="0.0.4"></a>
 ### 0.0.4 (2015-05-06)
 

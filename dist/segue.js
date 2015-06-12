@@ -1,5 +1,5 @@
 /*
- * angular-segue - v0.0.4 - 2015-05-06
+ * angular-segue - v0.0.5 - 2015-06-12
  * http://github.com/mhssmnn/angular-segue
  * Created by Mark Haussmann; Licensed under Public Domain
  */
@@ -17,7 +17,8 @@ angular.module('mhSegue', [])
     successClass:     'segue-success',
     failureClass:     'segue-fail',
     indicatorClass:   '',
-    successDuration:  3000
+    successDuration:  3000,
+    minDuration:      0
   };
 
   // The options specified to the provider globally.
@@ -65,6 +66,13 @@ angular.module('mhSegue', [])
       });
 
       return {
+        promise: function(method) {
+          return $q.all(
+            $q.when(method),
+            $timeout(angular.noop, opts.minDuration)
+          );
+        },
+
         setIdle: function(elem) {
           elem.addClass(opts.defaultClass);
           elem.removeClass(opts.indicatingClass)
@@ -108,7 +116,7 @@ angular.module('mhSegue', [])
         // Bind promise events
         if (angular.isDefined(val) && angular.isFunction(val.then)) {
           segue.setIndicating(elem);
-          val.then(
+          segue.promise(val).then(
             segue.setSuccess.bind(segue, elem),
             segue.setFailure.bind(segue, elem));
         }
