@@ -1,5 +1,5 @@
 /*
- * angular-segue - v0.0.5 - 2015-06-12
+ * angular-segue - v0.0.6 - 2015-06-12
  * http://github.com/mhssmnn/angular-segue
  * Created by Mark Haussmann; Licensed under Public Domain
  */
@@ -67,10 +67,10 @@ angular.module('mhSegue', [])
 
       return {
         promise: function(method) {
-          return $q.all(
+          return $q.all([
             $q.when(method),
             $timeout(angular.noop, opts.minDuration)
-          );
+          ]);
         },
 
         setIdle: function(elem) {

@@ -1,3 +1,12 @@
+<a name="0.0.6"></a>
+### 0.0.6 (2015-06-12)
+
+
+#### Bug Fixes
+
+* **Duration:** pass array to $q instead of parameters ([43bd25a0](http://github.com/mhssmnn/angular-segue/commit/43bd25a04ca3df84ce9e87ebae83457a41048bbb))
+
+
 <a name="0.0.5"></a>
 ### 0.0.5 (2015-06-12)
 
