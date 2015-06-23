@@ -1,3 +1,12 @@
+<a name="0.0.7"></a>
+### 0.0.7 (2015-06-23)
+
+
+#### Features
+
+* **SegueState:** allow general state transition indicator ([ab5d7b30](http://github.com/mhssmnn/angular-segue/commit/ab5d7b3012417f88d1de3ab11aa978627c9b7666))
+
+
 <a name="0.0.6"></a>
 ### 0.0.6 (2015-06-12)
 
