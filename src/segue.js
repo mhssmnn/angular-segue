@@ -31,8 +31,8 @@ angular.module('mhSegue', [])
   /**
    * Returns the actual instance of the $segue service.
    */
-  this.$get = ['$q', '$templateCache', '$timeout', '$parse',
-  function($q,   $templateCache, $timeout, $parse){
+  this.$get = ['$q', '$templateCache', '$timeout', '$parse', '$http',
+  function($q,   $templateCache, $timeout, $parse, $http){
     var options = angular.extend({}, defaultOptions, globalOptions);
 
     function loadTemplate() {
@@ -119,6 +119,11 @@ angular.module('mhSegue', [])
 
 .directive('segueState', ['$segue', '$injector', function($segue, $injector){
   var $state;
+  var events = {
+    start: '$stateChangeStart',
+    success: '$stateChangeSuccess',
+    failure: '$stateChangeError'
+  };
 
   // Copied from ui-router
   // jshint -W116, -W109, -W003
@@ -149,11 +154,6 @@ angular.module('mhSegue', [])
     link: function(scope, elem, attr) {
       var segue = $segue(attr.segueOptions, scope);
       var $state = $state || $injector.get('$state');
-      var events = {
-        start: '$stateChangeStart',
-        success: '$stateChangeSuccess',
-        failure: '$stateChangeError'
-      };
       var testIdentity = function(uiSrefValue, toState, toParams) {
         var ref = parseStateRef(uiSrefValue, $state.current);
         var params = ref.paramExpr ? scope.$eval(ref.paramExpr) : null;
@@ -164,19 +164,19 @@ angular.module('mhSegue', [])
       segue.setIdle(elem);
 
       scope.$on(events.start, function(ev, state, toParams){
-        if (testIdentity(attr.uiSref, state, toParams)) {
+        if (!attr.uiSref || testIdentity(attr.uiSref, state, toParams)) {
           segue.setIndicating(elem);
         }
       });
 
       scope.$on(events.success, function(ev, state, toParams){
-        if (testIdentity(attr.uiSref, state, toParams)) {
+        if (!attr.uiSref || testIdentity(attr.uiSref, state, toParams)) {
           segue.setSuccess(elem);
         }
       });
 
       scope.$on(events.failure, function(ev, state, toParams){
-        if (testIdentity(attr.uiSref, state, toParams)) {
+        if (!attr.uiSref || testIdentity(attr.uiSref, state, toParams)) {
           segue.setFailure(elem);
         }
       });
