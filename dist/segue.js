@@ -1,5 +1,5 @@
 /*
- * angular-segue - v0.0.7 - 2016-04-12
+ * angular-segue - v0.0.8 - 2016-04-12
  * http://github.com/mhssmnn/angular-segue
  * Created by Mark Haussmann; Licensed under Public Domain
  */
