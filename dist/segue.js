@@ -1,5 +1,5 @@
 /*
- * angular-segue - v0.0.7 - 2015-06-23
+ * angular-segue - v0.0.7 - 2016-04-12
  * http://github.com/mhssmnn/angular-segue
  * Created by Mark Haussmann; Licensed under Public Domain
  */
@@ -130,7 +130,8 @@ angular.module('mhSegue', [])
   var events = {
     start: '$stateChangeStart',
     success: '$stateChangeSuccess',
-    failure: '$stateChangeError'
+    failure: '$stateChangeError',
+    cancel: '$stateChangeCancel'
   };
 
   // Copied from ui-router
@@ -184,6 +185,12 @@ angular.module('mhSegue', [])
       });
 
       scope.$on(events.failure, function(ev, state, toParams){
+        if (!attr.uiSref || testIdentity(attr.uiSref, state, toParams)) {
+          segue.setFailure(elem);
+        }
+      });
+
+      scope.$on(events.cancel, function(ev, state, toParams){
         if (!attr.uiSref || testIdentity(attr.uiSref, state, toParams)) {
           segue.setFailure(elem);
         }
